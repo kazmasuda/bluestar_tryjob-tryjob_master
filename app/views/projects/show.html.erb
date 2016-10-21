@@ -1,0 +1,49 @@
+<h1>Project</h1>
+
+<div>
+  <table class="table table-hover ">
+    <thead><tr>
+      <th>案件名</th>
+      <th><%= @project.title %></th>
+    </tr></thead>
+    <tbody><tr>
+      <td>役割</td>
+      <td><%= Role.find(@project.role).name %></td>
+    </tr><tr>
+      <td>報酬</td>
+      <td><%= @project.fee %>万/月</td>
+    </tr><tr>
+      <td>勤務地</td>
+      <td><%= Place.find(@project.place).name %></td>
+    </tr><tr>
+      <td>雇用形態</td>
+      <td><%= Type.find(@project.type).name %></td>
+    </tr><tr>
+      <td>技術</td>
+      <td>
+        <% environments = Environment.where(project_id: @project.id) %>
+        <% environments.each do |environment| %>
+          <% if !Skill.find_by_id(environment.skill_id).blank? then %>
+            <%= Skill.find(environment.skill_id).name %>&nbsp;
+          <% end %>
+        <% end %>
+      </td>
+    </tr><tr>
+      <td>期間</td>
+      <td><%= @project.period %></td>
+    </tr><tr>
+      <td>支払日</td>
+      <td><%= @project.payday %></td>
+    </tr><tr>
+      <td>面接回数</td>
+      <td><%= @project.interview %>回</td>
+    </tr><tr>
+      <td>詳細</td>
+      <td><%= @project.detail %></td>
+    </tr></tbody>
+  </table>
+</div>
+
+<p>
+  <%= link_to "HOME", projects_path %>
+</p>

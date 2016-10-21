@@ -1,0 +1,15 @@
+<h1>技術 -Skills-</h1>
+<ul>
+  <% @skills.each do |skill| %>
+  <li><%= skill.name %>&nbsp;<%= link_to "[rm]", skill_path(skill.id), method: :delete, data: {confirm: "プロジェクト一覧に影響がでるかもしれませんよ？"} %></li>
+  <% end %>
+</ul>
+
+<%= form_for @skill do |f| %>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>
+
+<p>
+  <%= link_to "Projects", projects_path %>
+</p>

@@ -1,0 +1,46 @@
+<h1>Projects</h1>
+
+<table>
+  <thead><tr>
+    <th>No</th>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Role</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr></thead>
+  <tbody>
+    <% project_number = 0 %>
+    <% @projects.each do |project| %>
+    <% project_number += 1 %>
+    <tr>
+      <td><%= project_number %></td>
+      <td><%= project.id %></td>
+      <td><%= project.title %></td>
+      <td><%= Role.find(project.role).name %></td>
+      <td><%= link_to "Edt", edit_project_path(project.id) %></td>
+      <td><%= link_to "Dlt", project_path(project.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= form_for @project, :url => projects_show_path do |f| %>
+<div class="row">
+  <div class="field four columns">
+    <%= f.number_field :id, :class => "input", :placeholder => "Project ID" %>
+  </div>
+  <div class="medium primary btn">
+    <%= f.submit "Search" %>
+  </div>
+  </div>
+<% end %>
+
+<p>編集</p>
+<p class="btn medium primary"><%= link_to "Project", new_project_path %></p>
+<p class="btn medium primary"><%= link_to "Role", roles_path %></p>
+<p class="btn medium primary"><%= link_to "Place", places_path %></p>
+<p class="btn medium primary"><%= link_to "Type", types_path %></p>
+<p class="btn medium primary"><%= link_to "Environment", environments_path %></p>
+<p class="btn medium primary"><%= link_to "Skill", skills_path %></p>

@@ -1,0 +1,15 @@
+<h1>雇用形態 -Types-</h1>
+<ul>
+  <% @types.each do |type| %>
+  <li><%= type.name %>&nbsp;<%= link_to "[rm]", type_path(type.id), method: :delete, data: {confirm: "プロジェクト一覧に影響がでるかもしれませんよ？"} %></li>
+  <% end %>
+</ul>
+
+<%= form_for @type do |f| %>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>
+
+<p>
+  <%= link_to "Projects", projects_path %>
+</p>

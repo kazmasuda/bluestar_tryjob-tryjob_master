@@ -1,0 +1,15 @@
+/Users/masuda/.rbenv/versions/2.2.3/bin/ruby -r ./siteconf20161018-27238-1musio8.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.bundle
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20161018-27238-1wodw1f

@@ -1,0 +1,15 @@
+<h1>役割 -Roles-</h1>
+<ul>
+  <% @roles.each do |role| %>
+  <li><%= role.name %>&nbsp;<%= link_to "[rm]", role_path(role.id), method: :delete, data: {confirm: "プロジェクト一覧に影響がでるかもしれませんよ？"} %></li>
+  <% end %>
+</ul>
+
+<%= form_for @role do |f| %>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>
+
+<p>
+  <%= link_to "Projects", projects_path %>
+</p>

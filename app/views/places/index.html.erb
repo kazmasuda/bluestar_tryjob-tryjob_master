@@ -1,0 +1,15 @@
+<h1>勤務地 -Places-</h1>
+<ul>
+  <% @places.each do |place| %>
+  <li><%= place.name %>&nbsp;<%= link_to "[rm]", place_path(place.id), method: :delete, data: {confirm: "プロジェクト一覧に影響がでるかもしれませんよ？"} %></li>
+  <% end %>
+</ul>
+
+<%= form_for @place do |f| %>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>
+
+<p>
+  <%= link_to "Projects", projects_path %>
+</p>

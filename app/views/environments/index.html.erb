@@ -1,0 +1,43 @@
+<h1>開発環境 -Environments-</h1>
+
+<table>
+  <thead><tr>
+    <th>Project</th>
+    <th>Skill</th>
+  </tr></thead>
+  <tbody>
+    <% @projects.each do |project| %>
+    <tr>
+      <td><%= project.id.to_s %></td>
+      <td>
+        <% environments = Environment.where(project_id: project.id) %>
+        <% environments.each do |environment| %>
+          <% if !Skill.find_by_id(environment.skill_id).blank? then %>
+            <%= Skill.find(environment.skill_id).name %>
+            <%= link_to "[rm]", environment_path(environment.id), method: :delete %>
+            &nbsp;
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_for @environment do |f| %>
+<span>Project ID</span>
+<div class="field"><div class="picker">
+  <%= f.collection_select :project_id, Project.all, :id, :id %>
+</div></div>
+<span>Skill</span>
+<div class="field"><div class="picker">
+  <%= f.collection_select :skill_id, Skill.all, :id, :name %>
+</div></div>
+<div class="medium primary btn">
+  <%= f.submit "スキル追加" %>
+</div>
+<% end %>
+
+<p>
+  <%= link_to "Projects", projects_path %>
+</p>
